@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Tools
@@ -32,7 +33,11 @@ namespace Tools
 
             foreach (string f in filesToScan)
             {
-                var x = "";
+                string text = File.ReadAllText(f);
+                var consoleLog = Regex.Match(text, @"console\.log\(([^)]+)\);");
+                text = text.Replace(consoleLog.ToString(), "");
+                File.WriteAllText(f, text);
+                Console.WriteLine(text);
             }
         }
 
