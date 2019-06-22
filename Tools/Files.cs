@@ -26,14 +26,13 @@ namespace Tools
             foreach (string f in filesToScan)
             {
                 string text = File.ReadAllText(f);
-                var match = Regex.Match(text, regexPattern);
-
-                if (match.Length > 0)
+                var matches = Regex.Matches(text, regexPattern);
+                foreach (var m in matches)
                 {
-                    text = text.Replace(match.ToString(), "");
+                    text = text.Replace(m.ToString(), "");
                     File.WriteAllText(f, text);
                     Console.WriteLine("Replaced text in " + f);
-                }                
+                }
             }
 
             Console.WriteLine("Finished");
