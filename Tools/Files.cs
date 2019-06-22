@@ -20,11 +20,8 @@ namespace Tools
 
         public static void ReplaceTextInFile()
         {
-            // Get directories to scan
-            GetDirectories(folderRoot);
 
-            // Get files to scan
-            GetFiles();
+            PrepareFilesToScan();
 
             foreach (string f in filesToScan)
             {
@@ -41,6 +38,15 @@ namespace Tools
 
             Console.WriteLine("Finished");
 
+        }
+
+        public static void PrepareFilesToScan()
+        {
+            // Get directories to scan
+            GetDirectories(folderRoot);
+
+            // Get files to scan
+            GetFiles();
         }
 
         public static void GetDirectories(string rootDirectory)
