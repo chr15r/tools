@@ -55,8 +55,8 @@ namespace Tools
 
         public static void GetDirectories(string rootDirectory)
         {
-            var filterDirectory = Directory.GetDirectories(rootDirectory);
-            foreach (var item in filterDirectory)
+            var directories = Directory.GetDirectories(rootDirectory);
+            foreach (var item in directories)
             {
                 var directoryName = new DirectoryInfo(item).Name;
 
