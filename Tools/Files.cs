@@ -12,7 +12,7 @@ namespace Tools
     {
         public static string folderRoot = @"C:\Users\chris\Documents\Test";
         public static string regexPattern = @"console\.log\(([^)]+)\);";
-        public static List<string> foldersToIgnore = new List<string> { "Ignore", "Ignore1" };
+        public static List<string> directoriesToIgnore = new List<string> { "Ignore", "Ignore1" };
         public static List<string> filesToIgnore = new List<string> { "ConsoleLogIgnore1.txt" };
         public static List<string> fileExtensionsToIgnore = new List<string> { ".js" };
         public static List<string> directoriesToScan = new List<string>();
@@ -48,9 +48,9 @@ namespace Tools
             var filterDirectory = Directory.GetDirectories(rootDirectory);
             foreach (var item in filterDirectory)
             {
-                var folderName = new DirectoryInfo(item).Name;
+                var directoryName = new DirectoryInfo(item).Name;
 
-                if (!foldersToIgnore.Contains(folderName))
+                if (!directoriesToIgnore.Contains(directoryName))
                 {
                     directoriesToScan.Add(item.ToString());
                 }
