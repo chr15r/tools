@@ -20,22 +20,27 @@ namespace Tools
 
         public static void ReplaceTextInFile()
         {
+            int fileCount = 0;
+            int replacementCount = 0;
 
             PrepareFilesToScan();
 
             foreach (string f in filesToScan)
             {
                 string text = File.ReadAllText(f);
-                var matches = Regex.Matches(text, regexPattern);
+                var matches = Regex.Matches(text.ToLower(), regexPattern);
                 foreach (var m in matches)
                 {
-                    text = text.Replace(m.ToString(), "");
+                    text = text.ToLower().Replace(m.ToString(), "");
                     File.WriteAllText(f, text);
                     Console.WriteLine("Replaced text in " + f);
+                    replacementCount += 1;
                 }
+
+                fileCount += 1;
             }
 
-            Console.WriteLine("Finished");
+            Console.WriteLine("Replaced " + replacementCount + " occurences after scanning " + fileCount + " files");
 
         }
 
